@@ -16,7 +16,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         let table = UITableView(frame: self.view.bounds)
-        table.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+        table.separatorStyle = UITableViewCellSeparatorStyle.singleLine
         table.dataSource = self
         table.delegate = self
         table.allowsSelection = false
@@ -24,32 +24,32 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rows.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell")
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
+            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
         }
         let str = EasyAttributedStringBuilder(str: rows[indexPath.row])
         switch indexPath.row {
         case 0:
-            str.firstCharacter().setFont(UIFont.systemFontOfSize(22)).setTextColor(UIColor.blueColor())
+            str.firstCharacter().setFont(UIFont.systemFont(ofSize: 22)).setTextColor(UIColor.blue)
         case 1:
-            str.allRange().setBackgroundColor(UIColor.orangeColor()).setTextColor(UIColor.whiteColor())
+            str.allRange().setBackgroundColor(UIColor.orange).setTextColor(UIColor.white)
         case 2:
             str.rangeOfString("kern").setKern(10)
         case 3:
-            str.allRange().setUnderlineStyle(.StyleDouble).setUnderlineColor(UIColor.brownColor())
+            str.allRange().setUnderlineStyle(.styleDouble).setUnderlineColor(UIColor.brown)
         case 4:
-            str.allRange().setStrikethroughStyle(.StyleThick).setStrikethroughColor(UIColor.brownColor())
+            str.allRange().setStrikethroughStyle(.styleThick).setStrikethroughColor(UIColor.brown)
         case 5:
             let shadow = NSShadow()
             shadow.shadowBlurRadius = 3
-            shadow.shadowColor = UIColor.blueColor()
-            shadow.shadowOffset = CGSizeMake(5, 5)
+            shadow.shadowColor = UIColor.blue
+            shadow.shadowOffset = CGSize(width: 5, height: 5)
             str.allRange().setShadow(shadow)
         case 6:
             str.allRange().setTextEffect()
@@ -60,7 +60,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         case 9:
             str.allRange().setObliqueness(0.9)
         case 10:
-            str.rangeOfString("Stroke", option: .CaseInsensitiveSearch).setStrokeColor(UIColor.greenColor()).setStrokeWidth(5)
+            str.rangeOfString("Stroke", option: .caseInsensitive).setStrokeColor(UIColor.green).setStrokeWidth(5)
         default:
             break
         }
